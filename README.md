@@ -285,3 +285,5 @@ Copy main.tf, output.tf, providers.tf, variables.tf, and lambda_function.py scri
 2. terraform plan
 3. terraform apply
 4. terraform destroy # delete the resources
+
+Note/Deviations: I wasn’t able to create trial account or create vendor account for sumo logic from marketplace, and therefore using Cloudwatch alarm.
