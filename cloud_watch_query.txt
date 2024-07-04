@@ -1,0 +1,28 @@
+
+
+
+To identify log entries where the response time of a endpoint exceeding 3 seconds, the following cloudwatch query can be used:
+
+```
+fields @timestamp, @message
+| filter @message like /response time for endpoint exceeding/
+| parse @message 'High response time for /api/data: * (\\d+) ms' as responseTime
+| filter responseTime > 3000
+| sort @timestamp desc
+```
+
+This query filters log entries where the response time of the endpoint exceeds 3 seconds (3000 milliseconds), and then groups the results by 10-minute intervals. The `stats count()` function counts the number of log entries in each interval, and the `sort count desc` function sorts the results in descending order by count.
+
+```
+fields @timestamp, responseTime
+| filter responseTime > 3000
+| stats count() as count by bin(10m)\
+| sort count desc
+```
+
+```
+fields @timestamp, @message
+| filter @message like /response time for the endpoint/
+| sort @timestamp desc
+| limit 4
+```
