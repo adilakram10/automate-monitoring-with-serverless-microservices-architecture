@@ -118,31 +118,25 @@ aws logs put-log-events \
 1. In the Cloudwatch Logs Insights query editor, click **Save** and give the query a name **ResponseTime**. 
 2. Create a new metric with the same name in CloudWatch Metrics. 
 
-**Step 1.4: Create an alarm in CloudWatch Alarms:** 
+**Step 1.4: Create an alarm in Cloudwatch Alarms and configure Lambda action as a trigger**
 
 1. In the Cloudwatch console, go to **Alarms** and click **"Create Alarm".** 
 2. Select the **ResponseTime** metric in the above created namespace and configure the following settings:
- - Statistic: Count
+ - Statistic: Sample Count
  - Period: 10 minutes.
  - Evaluation Periods: 1.
  - Datapoints to Alarm: 5.
  - Comparison Operator : GreaterThanThreshold 
  - Threshold : 5. 
-- Treat Missing Data as Ignore or Missing based on your preference. 
-
+ - Treat Missing Data as Ignore or Missing
+ - Next : Configure Actions
+ - Add Lambda action
+ - Select In Alarm for alarm state trigger
+ - Choose lambda function from drop-down(This will populate after lambda function is created)
+ - Provide the alarm name
 3. Click **Create Alarm.** 
 
- **Step 1.5: Create Cloudwatch alarm to trigger Lambda function**
-
-1. Go to the Amazon CloudWatch console.
-2. Select "Alarms" and then "Create alarm".
-3. Choose "Metric" and select your desired namespace and metric.
-4. Set the "Statistic" to "SampleCount".
-5. In the "Conditions" section, set the "Threshold" to "1".
-6. For "Evaluation periods", enter "5".
-7. Under "Configure actions", select your Lambda function as the "Alarm state change action".
-8. Name your alarm and add any desired notifications.
-This will create an alarm that triggers your Lambda function when an entry with the /api/data endpoint is present in your selected metric.
+This will create an alarm that triggers your Lambda function when an entry with the endpoint is present in your selected metric.
 
 ### **Part 2: Creating a Lambda function, roles, policies, Linux instance, SNS subscription and SQS**
 ---
