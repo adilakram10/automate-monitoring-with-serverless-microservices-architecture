@@ -1,6 +1,6 @@
 # Automate Observability and Monitoring using Event Driven Microservices and Serverless Architecture 
 
-In this tutorial, we will design a monitoring and observability solution that will identify and respond to a anamalous behavior in the environment, and will take an automated action to resolve the isssue. This guide provides step-by-step instructions for building a monitoring automation solution on the aws platform using sumo logic and python lambda function utilizing web console and also terraform to deploy the infrastructure. 
+In this tutorial, we will design a monitoring and observability solution that will identify and respond to a anamalous behavior in the environment, and will take an automated action to resolve the isssue. This guide provides step-by-step instructions for building a monitoring automation solution on the aws platform using cloud wath log event, alarm and python lambda function utilizing web console and also terraform to deploy the infrastructure. 
 
 This exercise will also create the following resources:
 
@@ -144,7 +144,7 @@ aws logs put-log-events \
 8. Name your alarm and add any desired notifications.
 This will create an alarm that triggers your Lambda function when an entry with the /api/data endpoint is present in your selected metric.
 
-### **Part 2: Creating a Lambda function, roles, policies, Linux instance, and setting up triggers**
+### **Part 2: Creating a Lambda function, roles, policies, Linux instance, SNS subscription and SQS**
 ---
 
 In this step, create a "Lambda" python function that gets triggered by sumo logic alert to restart linux instance, log the action, and send a notification to an SNS topic.
@@ -286,4 +286,4 @@ Copy main.tf, output.tf, providers.tf, variables.tf, and lambda_function.py scri
 3. terraform apply
 4. terraform destroy # delete the resources
 
-Note/Deviations: I wasn’t able to create trial account or create vendor account for sumo logic from marketplace, and therefore using Cloudwatch alarm.
+**Note/Deviations:** I wasn’t able to create trial account or create vendor account for sumo logic from marketplace, and therefore using Cloudwatch alarm.
