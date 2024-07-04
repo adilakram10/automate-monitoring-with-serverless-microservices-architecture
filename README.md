@@ -7,13 +7,12 @@ This exercise will also create the following resources:
 - Cloudwatch log group and streams
 - Cloudwatch alarm
 - Lambda function
-- Elastic compute linux instance
+- Elastic compute Linux instance
 - Simple notification service(SNS) 
 - Simple Queue service(SQS)
 
 The following architectural diagram shows the flow of the serverless event driven solution.
 
-/Users/admin/repo/automate-monitoring-with-serverless-microservices-architecture/images
 ![Automated monitoring using Microservices architecture](https://github.com/adilakram10/automate-monitoring-with-serverless-microservices-architecture/blob/main/images/image1.png)
  
 ## **Prerequisites**
@@ -267,7 +266,7 @@ In this step, provide necessary permissions to Lambda role to allow Cloudwatch a
 - Source ARN : enter the ARN of the cloudwatch alarm.
 
 
-**Permissions can also be addedusing awscli:**
+**Permissions can also be added using awscli:**
 ```
 aws lambda add-permission --function-name $my-function-name \
 --statement-id $AlarmAction --action 'lambda:InvokeFunction' \
@@ -285,4 +284,4 @@ Copy main.tf, output.tf, providers.tf, variables.tf, and lambda_function.py scri
 1. terraform init
 2. terraform plan
 3. terraform apply
-4. terraform destroy # delete the rersources
+4. terraform destroy # delete the resources
