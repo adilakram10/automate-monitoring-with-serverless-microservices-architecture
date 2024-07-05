@@ -256,7 +256,6 @@ In this step, provide necessary permissions to Lambda role to allow Cloudwatch a
 - Statement ID : enter a unique ID for the permission
 - Action : lambda:InvokeFunction
 - Principal: lambda.alarms.cloudwatch.amazonaws.com
-- Source account:  Account ID that owns the alarm.
 - Source ARN : enter the ARN of the cloudwatch alarm.
 
 
