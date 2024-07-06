@@ -1,6 +1,6 @@
 # Configure the AWS provider
 provider "aws" {
-  region = "us-east-2"
+  region = "$region"
 }
 
 # Fetch latest Linux AMI
@@ -92,22 +92,22 @@ resource "aws_iam_policy" "lambda_policy02" {
     },
     {
       "Action": "sns:Publish",
-      "Resource": "arn:aws:sns:us-east-2:992382468626:lambda_topic02",
+      "Resource": "arn:aws:sns:$region:$account_id:lambda_topic02",
       "Effect": "Allow"
     },
     {
       "Action": "logs:CreateLogGroup",
-      "Resource": "arn:aws:logs:us-east-2:*:*",
+      "Resource": "arn:aws:logs:$region:*:*",
       "Effect": "Allow"
     },
     {
       "Action": "logs:CreateLogStream",
-      "Resource": "arn:aws:logs:us-east-2:*:*",
+      "Resource": "arn:aws:logs:$region:*:*",
       "Effect": "Allow"
     },
     {
       "Action": "logs:PutLogEvents",
-      "Resource": "arn:aws:logs:us-east-2:*:*",
+      "Resource": "arn:aws:logs:$region:*:*",
       "Effect": "Allow"
     }
   ]

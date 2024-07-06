@@ -4,19 +4,19 @@ In this tutorial, we will design a monitoring and observability solution that wi
 
 This exercise will also create the following resources:
 
-- Cloudwatch log group and streams
+- Cloudwatch Log group and Streams
 - Cloudwatch alarm
 - Lambda function
-- Elastic compute Linux instance
-- Simple notification service(SNS) 
-- Simple Queue service(SQS)
+- Elastic Compute Linux instance
+- Simple Notification Service(SNS) 
+- Simple Queue Service(SQS)
 
 The following architectural diagram shows the flow of the serverless event driven solution.
 
 ![Automated monitoring using Microservices architecture](https://github.com/adilakram10/automate-monitoring-with-serverless-microservices-architecture/blob/main/images/image1.png)
  
 ## **Prerequisites**
-Terraform and AWS CLI, cloud account
+Terraform and AWS CLI, Cloud account
 
 
 ## **Solution**
@@ -26,7 +26,7 @@ This solution will deploy a sns topic to receive notification from lambda functi
 
 ## **Steps to Implement**
 
-### Part 1. **Cloudwatch query and Alarm**
+### Part 1. **Cloudwatch Query and Alarm**
 ---
 
 We will use Cloudwatch to monitor the response time of the query endpoint and generate an alert when the response time exceeds 3 seconds in a 10-minute window.
@@ -164,7 +164,7 @@ In this step, create a "Lambda" python function that gets triggered by sumo logi
     },
     {
       "Action": "sns:Publish",
-      "Resource": "arn:aws:sns:us-east-2:992382468626:lambda_topic01",
+      "Resource": "arn:aws:sns:us-east-2:$account_id:$topic_name",
       "Effect": "Allow"
     }
   ]
@@ -231,7 +231,7 @@ Use SQS queue to capture the messages.
 3. For next steps, choose Amazon Linux machine image, architecture, instance type, network, storage, create a new security group and keypair, and click **Launch Instance**
 4. Copy the instance-id and save it for your reference to include in python code.
 
-**Step 2.7: Creating a lambda function**
+**Step 2.7: Creating a Lambda function**
 
 1.  In the AWS Management console search box, enter **Lambda** from the list, choose **lambda**.
 2.  Choose create function and configure the following settings:
@@ -245,7 +245,7 @@ Use SQS queue to capture the messages.
 3. Choose **create function**
 4. Type, upload, or paste python code from your IDE, and select **deploy**
 
-**Step 2.8: Adding invoking permissions to Lambda function using resource-based policy**
+**Step 2.8: Adding invoking permissions to the Lambda function using resource-based policy**
 
 In this step, provide necessary permissions to Lambda role to allow Cloudwatch alarm to invoke the function.
 
